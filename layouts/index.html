@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <ul>
+    {{ range .Site.Sections }}
+      <li>
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+  
+        {{ $sectionPages := where .Site.Pages "Section" .Section }}
+        {{ if ge (len $sectionPages) 1 }}
+          <ul>
+            {{ range $sectionPages }}
+              <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+            {{ end }}
+          </ul>
+        {{ end }}
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
