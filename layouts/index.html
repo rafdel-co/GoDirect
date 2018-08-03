@@ -3,12 +3,15 @@
   <ul>
     {{ range .Site.Sections }}
       <li>
-        <strong>{{ .Title }}</strong> - {{ .Summary }}
+        <strong>{{ .Title }}</strong> &mdash; {{ .Summary }}
         {{ $sectionPages := where .Site.Pages "Section" .Section }}
         {{ if ge (len $sectionPages) 1 }}
           <ul>
             {{ range after 1 $sectionPages }}
-              <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+              <li>
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+                <span>&mdash; {{ .Summary }}</span>
+              </li>
             {{ end }}
           </ul>
         {{ end }}
